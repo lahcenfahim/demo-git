@@ -12,4 +12,4 @@ jobs:
         git config --global user.name "FROM_CI"
         git add action.txt
         git commit -m "COMMIT FROM CI"
-        git push orign main
+        git push origin main
