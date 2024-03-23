@@ -1,0 +1,15 @@
+name: test
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - run: |
+        echo 123 > action.txt
+        git config --global user.email "FROM_CI@test.com"
+        git config --global user.name "FROM_CI"
+        git add action.txt
+        git commit -m "COMMIT FROM CI"
+        git push orign main
