@@ -31,8 +31,8 @@ def generate_jwt(app_id, private_key_path):
 if __name__ == "__main__":
     # Parse arguments
     parser = argparse.ArgumentParser(description="Generate a JWT for GitHub App authentication.")
-    parser.add_argument('-app_id', type=str, required=True, help="GitHub App ID")
-    parser.add_argument('-private_key_path', type=str, required=True, help="Path to the GitHub App private key (PEM file)")
+    parser.add_argument('--app_id', type=str, required=True, help="GitHub App ID")
+    parser.add_argument('--private_key_path', type=str, required=True, help="Path to the GitHub App private key (PEM file)")
     
     args = parser.parse_args()
 
