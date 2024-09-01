@@ -1,5 +1,5 @@
 name: Cleanup Old Workflow Runs
-on: workflow_dispatch
+on: push
 
 jobs:
   cleanup:
@@ -22,7 +22,7 @@ jobs:
       - name: Generate JWT Token
         id: generate_jwt
         run: |
-          jwt_token = $(python get_jwt_token.py --app_id "${{secrets.APP_ID}}" --private_key "${{secrets.PRIVATE_KEY_APP}}")
+          jwt_token=$(python get_jwt_token.py --app_id "${{secrets.APP_ID}}" --private_key "${{secrets.PRIVATE_KEY_APP}}")
           echo "JWT Token: $jwt_token"
 
       - name: Get Installation Access Token
