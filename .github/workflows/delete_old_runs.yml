@@ -22,7 +22,7 @@ jobs:
       - name: Generate JWT Token
         id: generate_jwt
         run: |
-          $jwt_token = python get_jwt_token.py -app_id ${{secrets.APP_ID}} -private_key_path ${{secrets.PRIVATE_KEY_APP}}
+          jwt_token = $(python get_jwt_token.py -app_id ${{secrets.APP_ID}} -private_key_path ${{secrets.PRIVATE_KEY_APP}})
           echo "JWT_TOKEN=$jwt_token" >> $GITHUB_ENV
 
       - name: Get Installation Access Token
