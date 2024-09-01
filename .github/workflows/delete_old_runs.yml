@@ -24,7 +24,6 @@ jobs:
         run: |
           jwt_token = $(python get_jwt_token.py --app_id "${{secrets.APP_ID}}" --private_key "${{secrets.PRIVATE_KEY_APP}}")
           #echo "JWT_TOKEN=$jwt_token" >> $GITHUB_ENV
-          echo $jwt_token
 
       - name: Get Installation Access Token
         id: get_installation_token
