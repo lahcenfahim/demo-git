@@ -28,22 +28,25 @@ jobs:
       - name: Get Installation Access Token
         run: |
           installation_id=$(curl -H "Authorization: Bearer ${{env.JWT_TOKEN}}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/app/installations | jq -r '.[0].id')
-
           access_token=$(curl -X POST -H "Authorization: Bearer ${{env.JWT_TOKEN}}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/app/installations/${installation_id}/access_tokens | jq -r '.token')
-
           echo "ACCESS_TOKEN=$access_token" >> $GITHUB_ENV
 
       - name: Delete Old Workflow Runs
         run: |
-          # Fetch old workflow runs
-          workflow_runs=$(curl -H "Authorization: token ${{env.ACCESS_TOKEN}}" \
-                        -H "Accept: application/vnd.github.v3+json" \
-                        https://api.github.com/repos/${{github.repository}}/actions/runs | jq '.workflow_runs[] | select(.created_at < "'$(date -d '1 days ago' --utc +%Y-%m-%dT%H:%M:%SZ)'") | .id')
+            # Fetch all workflow runs
+            all_runs=$(curl -s -H "Authorization: token $ACCESS_TOKEN" -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${{github.repository}}/actions/runs")
 
-          # Loop through and delete each workflow run
-          for run_id in $workflow_runs; do
-            curl -X DELETE \
-              -H "Authorization: token ${{env.ACCESS_TOKEN}}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              https://api.github.com/repos/${{github.repository}}/actions/runs/$run_id
-          done
+            # Extract run IDs and their creation dates
+            run_ids=$(echo "$all_runs" | jq -r '.workflow_runs[] | "\(.id) \(.created_at)"')
+
+            # Get the current date minus 1 hour in ISO format
+            cutoff_date=$(date -d '1 hour ago' --utc +%Y-%m-%dT%H:%M:%SZ)
+
+            # Filter out runs older than 1 hour
+            old_runs=$(echo "$run_ids" | awk -v cutoff="$cutoff_date" '$2 < cutoff {print $1}')
+
+            # Delete old runs
+            for run_id in $old_runs; do
+                echo "Deleting workflow run ID: $run_id"
+                curl -s -X DELETE -H "Authorization: token $ACCESS_TOKEN" -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${{github.repository}}/actions/runs/$run_id"
+            done
