@@ -20,12 +20,13 @@ jobs:
         New-Item -Path test3.txt -ItemType File
         New-Item -Path test4.txt -ItemType File
         New-Item -Path test5.txt -ItemType File
+        dir
 
     - name: List Files in Folder and Create Cascading List
       id: generate-files
       run: |
         # Get all file names in the 'files/' folder
-        $fileNames = (Get-ChildItem -Path $env:GITHUB_ENV/ -File | ForEach-Object { $_.Name })
+        $fileNames = (Get-ChildItem -Path . -File | ForEach-Object { $_.Name })
         
         # Simulate cascading logic (e.g., creating lists based on file name prefixes, extensions, etc.)
         $cascadingList = $fileNames -join ","
