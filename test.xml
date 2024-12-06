@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+    <testsuite name='SampleTestSuite' tests='3' failures='1' skipped='1'><testcase name='Test1'/>
+        <testcase name='Test2'><failure message='Test failed'></failure></testcase>
+        <testcase name='Test3'><skipped message='Test skipped'></skipped></testcase>
+    </testsuite>
+</testsuites>

@@ -1,17 +1,18 @@
 name: test
-on: workflow_dispatch
-
+on: push
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v4
-    - run: |
-        echo 123 > action_3.txt
-        git config --global user.email "FROM_CI@test.com"
-        git config --global user.name "FROM_CI"
-        git add action_3.txt
-        git commit -m "COMMIT FROM CI"
-        git push origin main
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action/windows@v2
+      if: always()
+      with:
+        files: |
+          test.xml
+	  
