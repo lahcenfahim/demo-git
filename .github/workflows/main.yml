@@ -15,4 +15,6 @@ jobs:
       with:
         files: |
           test-results\**\*.xml
+          test-results\**\*.trx
+          test-results\**\*.json
 	  
