@@ -14,5 +14,5 @@ jobs:
       if: always()
       with:
         files: |
-          test.xml
+          test-results\**\*.xml
 	  
