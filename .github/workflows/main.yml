@@ -15,4 +15,5 @@ jobs:
     - name: Publish Test Results
       run: |
         echo "$env:GITHUB_WORKSPACE"
+        Get-ChildItem -Path "$env:GITHUB_WORKSPACE"
         echo "![Image]($env:GITHUB_WORKSPACE\image\logo.png)" >> "$env:GITHUB_STEP_SUMMARY"
