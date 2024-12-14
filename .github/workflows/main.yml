@@ -14,4 +14,5 @@ jobs:
 
     - name: Publish Test Results
       run: |
+        pwd
         echo "![Image](logo.png)" >> "$env:GITHUB_STEP_SUMMARY"
