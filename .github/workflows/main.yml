@@ -16,4 +16,4 @@ jobs:
       run: |
         pwd
         Get-ChildItem -Path "D:\a\demo-git\demo-git"
-        echo "![Image](C:\Users\elfah\Desktop\demo-git\logo.png)" >> "$env:GITHUB_STEP_SUMMARY"
+        echo "![Image](../logo.png)" >> "$env:GITHUB_STEP_SUMMARY"
