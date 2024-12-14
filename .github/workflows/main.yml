@@ -14,6 +14,5 @@ jobs:
 
     - name: Publish Test Results
       run: |
-        pwd
-        Get-ChildItem -Path "D:\a\demo-git\demo-git"
-        echo "![Image]($env:GITHUB_WORKSPACE\logo.png)" >> "$env:GITHUB_STEP_SUMMARY"
+        echo "$env:GITHUB_WORKSPACE"
+        echo "![Image]($env:GITHUB_WORKSPACE\image\logo.png)" >> "$env:GITHUB_STEP_SUMMARY"
