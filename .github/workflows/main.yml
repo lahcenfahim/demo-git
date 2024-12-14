@@ -14,4 +14,4 @@ jobs:
 
     - name: Publish Test Results
       run: |
-        echo "![Company Logo](https://raw.githubusercontent.com/lahcenfahim/demo-git/main/logo.png)" >> $env:GITHUB_STEP_SUMMARY
+        echo "![Image](logo.png)" >> "$env:GITHUB_STEP_SUMMARY"
