@@ -14,8 +14,8 @@ jobs:
       - name: Call Hello World Action
         uses: ./hello-action
         with:
-          name: "Lahcen"
-          greeting: "Hey"
+          name: "Mr Lahcen"
+          greeting: "Good morning"
         
       - name: Display message
         run: echo "Greeting Message ${{ steps.hello-world-action.outputs.message }}"
