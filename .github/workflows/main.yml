@@ -16,4 +16,4 @@ jobs:
           greeting: "Hey"
         
       - name: Display message
-        run: echo "Greeting Message: ${{ steps.hello-world-action.outputs.message }}"
+        run: echo "Greeting Message ${{ steps.hello-world-action.outputs.message }}"
