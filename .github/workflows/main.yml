@@ -18,4 +18,4 @@ jobs:
           greeting: "Good morning"
         
       - name: Display message
-        run: echo Greeting Message $GITHUB_ENV:GREETING $GITHUB_ENV:NAME
+        run: echo "$GREETING $NAME"
