@@ -1,22 +1,20 @@
-name: "Test Hello Action"
+name: "Test Python Action"
 on: [push]
 
 jobs:
   greeting:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          repository: lahcenfahim/demo-git
-          token: ${{ secrets.GITHUB_TOKEN }}
+          python-version: '3.9'  # or any version you prefer
 
-      - name: Test
-        run: |
-          pwd
-
-      - name: Use action composite
-        uses: lahcenfahim/demo-git/hello-action@v2
+      - name: Run custom Python action
+        uses: ./hello-action
         with:
           name: "Lahcen"
           greeting: "Hey"
