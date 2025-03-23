@@ -1,21 +1,12 @@
-name: Test Workflow
-on: workflow_dispatch
+name: "Test Hello Action"
+on: [push]
 
 jobs:
-  build:
-    runs-on: windows-latest
-    env:
-      PASSWORD: ABCD-TEST
-    
-    permissions:
-      contents: write
-
+  greeting:
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
-
-    - name: Publish Test Results
-      run: |
-        echo "$env:GITHUB_WORKSPACE"
-        Get-ChildItem -Path "$env:GITHUB_WORKSPACE"
-        echo "![Image]($env:GITHUB_WORKSPACE\image\logo.png)" >> "$env:GITHUB_STEP_SUMMARY"
+      - uses: actions/checkout@v4
+      - uses: your-username/hello-action@v2
+        with:
+          name: "Lahcen"
+          greeting: "Hey"
