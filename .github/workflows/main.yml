@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: your-username/hello-action@v2
+      - uses: lahcenfahim/hello-action@v2
         with:
           name: "Lahcen"
           greeting: "Hey"
