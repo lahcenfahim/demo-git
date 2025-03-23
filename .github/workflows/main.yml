@@ -18,4 +18,4 @@ jobs:
           greeting: "Good morning"
         
       - name: Display message
-        run: echo "$GREETING $NAME"
+        run: echo "$message"
