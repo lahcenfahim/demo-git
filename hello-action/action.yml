@@ -24,7 +24,7 @@ runs:
     - name: Run Python script
       shell: bash
       run: |
-        python main.py
+        python hello-action/main.py
       env:
         NAME: ${{ inputs.name }}
         GREETING: ${{ inputs.greeting }}
