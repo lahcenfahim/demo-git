@@ -12,11 +12,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Call Hello World Action
-        id: hello_world
         uses: lahcenfahim/demo-git/hello-action@v2
         with:
           name: "Mr Lahcen"
           greeting: "Good morning"
         
       - name: Display message
-        run: echo "Greeting Message ${{ steps.hello_world.outputs.message }}"
+        run: echo "Greeting Message ${{ GITHUB_ENV.message }}"
