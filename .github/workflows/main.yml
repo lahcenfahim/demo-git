@@ -12,7 +12,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Call Hello World Action
-        uses: ./hello-action@v3
+        uses: lahcenfahim/demo-git/hello-action@v2
         with:
           name: "Mr Lahcen"
           greeting: "Good morning"
