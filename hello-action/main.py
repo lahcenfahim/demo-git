@@ -1,21 +1,12 @@
-import sys
 import os
-import json
 
 def main():
-    # Get inputs from environment variables
-    name = os.getenv('INPUT_NAME', 'World')
-    greeting = os.getenv('INPUT_GREETING', 'Hello')
-    
-    # Create the greeting message
+    name = os.getenv('NAME', 'World')
+    greeting = os.getenv('GREETING', 'Hello')
     message = f"{greeting}, {name}!"
     
-    # Print the message to the console (for GitHub Actions to capture)
-    print(message)
-    
-    # Set the output variable to message
-    with open(os.getenv('GITHUB_ENV'), 'a') as f:
-        f.write(f"GREETING_MESSAGE={message}\n")
+    # Print the message (this will be captured as output)
+    print(f"::set-output name=message::{message}")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

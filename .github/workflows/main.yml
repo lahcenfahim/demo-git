@@ -1,4 +1,5 @@
-name: "Test Python Action"
+name: "Test Composite Action"
+
 on: [push]
 
 jobs:
@@ -7,16 +8,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'  # or any version you prefer
-
-      - name: Run custom Python action
-        uses: ./hello-action
+      - name: Call Hello World Action
+        uses: ./hello-action  # Path to your custom composite action
         with:
           name: "Lahcen"
           greeting: "Hey"
+        
+      - name: Display message
+        run: echo "Greeting Message: ${{ steps.hello-world-action.outputs.message }}"

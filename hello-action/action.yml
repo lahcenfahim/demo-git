@@ -1,18 +1,29 @@
-name: "Hello World Python Action"
-description: "Prints a custom greeting message using Python"
-author: "Lahcen"
+name: "Hello World Action"
+description: "Prints a custom greeting message"
+author: "Your Name"
 inputs:
   name:
     description: "Name to greet"
-    required: false
+    required: true
     default: "World"
   greeting:
     description: "Custom greeting"
-    required: false
+    required: true
     default: "Hello"
 outputs:
   message:
     description: "The full greeting message"
 runs:
-  using: "python3"
-  main: "main.py"
+  using: "composite"  # Specify that it's a composite action
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Run Python script
+      run: |
+        python main.py
+      env:
+        NAME: ${{ inputs.name }}
+        GREETING: ${{ inputs.greeting }}
