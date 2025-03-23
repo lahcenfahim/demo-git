@@ -8,6 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          repository: lahcenfahim/demo-git
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Test
@@ -15,7 +16,7 @@ jobs:
           pwd
 
       - name: Use action composite
-        uses: lahcenfahimgitgit/demo-git/hello-action@v2
+        uses: lahcenfahim/demo-git/hello-action@v2
         with:
           name: "Lahcen"
           greeting: "Hey"
