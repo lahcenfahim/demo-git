@@ -16,3 +16,4 @@ outputs:
 runs:
   using: "node16"
   main: "index.js"
+  pre: npm install  # <-- Add this to install dependencies
