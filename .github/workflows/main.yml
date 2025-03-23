@@ -13,7 +13,7 @@ jobs:
           pwd
 
       - name: Use action composite
-        uses: ./hello-action@v2
+        uses: lahcenfahimgitgit/demo-git/hello-action@v2
         with:
           name: "Lahcen"
           greeting: "Hey"
