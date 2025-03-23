@@ -5,8 +5,16 @@ jobs:
   greeting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: ./hello-action@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test
+        run: |
+          pwd
+          ls -ltr
+
+      - name: Use action composite
+        uses: lahcenfahim/demo-git/hello-action@v2
         with:
           name: "Lahcen"
           greeting: "Hey"
