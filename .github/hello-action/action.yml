@@ -1,14 +1,18 @@
 name: "Hello World Action"
-description: "Prints a greeting message"
+description: "Prints a custom greeting message"
 author: "Lahcen"
 inputs:
   name:
     description: "Name to greet"
     required: false
     default: "World"
-outputs:
   greeting:
-    description: "The greeting message"
+    description: "Custom greeting"
+    required: false
+    default: "Hello"
+outputs:
+  message:
+    description: "The full greeting message"
 runs:
   using: "node16"
   main: "index.js"
