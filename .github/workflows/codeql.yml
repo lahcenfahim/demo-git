@@ -7,6 +7,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   analyze:
     name: CodeQL Analysis
@@ -21,9 +25,9 @@ jobs:
         languages: python
 
     - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
+      uses: github/codeql-action/autobuild@v3
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+      uses: github/codeql-action/analyze@v3
       with:
         queries: ./codeql/custom/sql_injection.ql
