@@ -23,11 +23,10 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: python
+        queries: ./codeql/custom/sql_injection.ql
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v3
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
-      with:
-        queries: ./codeql/custom/sql_injection.ql
