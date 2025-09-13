@@ -1,11 +1,23 @@
 import python
+import semmle.code.python.dataflow.DataFlow
 
 /**
- * Détecte l'utilisation de sqlite3.execute avec concaténation de chaîne
+ * Source : toute entrée utilisateur
  */
-from CallExpr call, Expr arg
-where
-  call.getTarget().hasName("execute") and
-  arg = call.getArgument(0) and
-  arg instanceof BinaryExpr
-select call, "Potentiel SQL injection via concaténation de chaîne."
+class UserInputSource extends TaintSource::FunctionCallNode {
+  UserInputSource() { this.getName() = "input" }  // Python input()
+}
+
+/**
+ * Sink : exécution SQL directe
+ */
+class SqlExecutionSink extends TaintSink::FunctionCallNode {
+  SqlExecutionSink() { this.getName() = "execute" }  // cursor.execute()
+}
+
+/**
+ * Flux de données : de l'entrée utilisateur vers l'exécution SQL
+ */
+from UserInputSource src, SqlExecutionSink sink, DataFlow::PathNode path
+where DataFlow::localFlow(src, sink)
+select sink, "Possible SQL injection: user input reaches execute()"

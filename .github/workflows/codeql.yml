@@ -1,11 +1,11 @@
-name: "CodeQL Custom Python"
+name: CodeQL Custom
 
 on:
   workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: main
   pull_request:
-    branches: [ "main" ]
+    branches: main
 
 permissions:
   contents: read
@@ -17,13 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v5
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: python
-        queries: ./codeql/custom/sql_injection.ql
+        extra-queries: ./codeql/custom
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v3
