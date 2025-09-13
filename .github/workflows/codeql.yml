@@ -1,7 +1,7 @@
 name: "CodeQL Custom Python"
 
 on:
-  workflow_dispatch:    # lancement manuel
+  workflow_dispatch:
   push:
     branches: [ "main" ]
   pull_request:
@@ -19,10 +19,11 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: python
-        packs: ./codeql/custom  # inclut le pack custom
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v2
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
+      with:
+        queries: ./codeql/custom/sql_injection.ql
