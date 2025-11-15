@@ -1,0 +1,35 @@
+version: 2
+updates:
+  # Surveillance des GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    
+    # Nombre maximum de PRs ouvertes simultanément
+    open-pull-requests-limit: 5
+    
+    # Labels automatiques sur les PRs
+    labels:
+      - "dependencies"
+      - "github-actions"
+    
+    # Assignation automatique
+    assignees:
+      - "lahcenfahim"
+    
+    # Préfixe des commits
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    
+    # Grouper les mises à jour des actions officielles
+    groups:
+      actions-official:
+        patterns:
+          - "actions/*"
+        update-types:
+          - "minor"
+          - "patch"
