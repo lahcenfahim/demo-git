@@ -13,7 +13,6 @@ updates:
     
     # Labels automatiques sur les PRs
     labels:
-      - "dependencies"
       - "github-actions"
     
     # Assignation automatique
